@@ -1,13 +1,11 @@
 ---
 title: 關於Promise這件事
-author: Kelvin Lin
-id: 三小
 data: 2022-09-15
 tags:
 - javascript
 categories:
 - javascript
-- Problems
+- 非同步
 ---
 ## 前言
 這是第一篇文章，目標一天一篇，持之以恆
@@ -32,6 +30,9 @@ promise 就是承諾
 2. 寫法不一致
 3. 無法同時執行(無法確保哪個時間點開始、結束)
 ## 一些範例
+
+
+
 ### Promise基本觀念
 ### 創建屬於自己的Promise
 
