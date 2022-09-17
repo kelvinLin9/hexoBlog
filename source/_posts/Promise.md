@@ -1,7 +1,7 @@
 ---
 title: 關於Promise這件事
-author: He Zhaoxiang
-id: learn-vuex
+author: Kelvin Lin
+id: 
 data: 2022-09-15
 tags:
 - javascript
@@ -17,9 +17,6 @@ categories:
 2. 為什麼需要
 3. 常用方法(跟某某東西比較?)
 4. 總結
-- e
-- 2
-  - 2
 
 > 這是引用
 
