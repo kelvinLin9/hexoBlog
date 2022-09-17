@@ -1,7 +1,7 @@
 ---
 title: 關於Promise這件事
 author: Kelvin Lin
-id: 
+id: 三小
 data: 2022-09-15
 tags:
 - javascript
