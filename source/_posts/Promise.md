@@ -147,7 +147,10 @@ function promiseEx() {
 - Pending -> 尚未得到結果
 - Resolved：事件已經執行完畢且成功操作，回傳 `resolve `的結果
 - Rejected：事件已經執行完畢但操作失敗，回傳 `rejected` 的結果
-上列的三種狀態每次執行必定會經過 Pending，接下來進入 Fulfilled 或 Rejected 的其中之一，並且可以使用 `then()` 及 `catch()` 取得成功或失敗的結果。
+
+Promise 的狀態一開始會是 pending ， 一旦 `resovle()` 被使用，狀態就會轉變為 fulfilled，而 `reject()` 被使用，狀態就會被轉變為 rejected。
+
+這裡需注意的地方為 Promise 只有結果會影響狀態，無法透過一般外力操作使其更改狀態，而狀態一旦從 pending 改變後，就無法改變了。
 
 在 `.then(onFulfilled, onRejected)`中可帶入兩個回呼函式，兩者分別又可以帶入各自的參數：
 
@@ -369,7 +372,36 @@ result.then(res => {
 因為API一次只會吐一頁的資料，本來想用Promise.all解決
 但是沒辦法解決頁面部照順序回傳的問(每頁回傳時間不一定)，後來助教建議async/await方式撰寫，下一篇文章就來記錄吧
 
-## 參考資料
-[卡斯伯Blog](https://www.casper.tw/development/2020/02/16/all-new-promise/)
-[Summer。桑莫。夏天](https://www.cythilya.tw/2018/10/31/promise/)
+```javascript
+getAllOrders () {
+  this.allOrders = []
+  this.revenue = 0
+  this.ordersNum = 0
+  status.isLoading = true
+    const axiosArray = []
+    for (let i = 1; i <= this.pagination.total_pages; i++) {
+        axiosArray.push(axios.get(url))
+      }
+      Promise.all(axiosArray).then((res) => {
+        for (let i = 1; i <= this.pagination.total_pages; i++) {
+          this.allOrders.push(...res[i - 1].data.orders)
+          res[i - 1].data.orders.forEach((item) => {
+            this.revenue += item.total
+            this.ordersNum += 1
+          })
+          status.isLoading = false
+        }
+        // console.log(this.allOrders)
+        this.getAllOrdersData()
+      })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+```
 
+## 參考資料
+- [卡斯伯Blog](https://www.casper.tw/development/2020/02/16/all-new-promise/)
+- [Summer。桑莫。夏天](https://www.cythilya.tw/2018/10/31/promise/)
+- [是 Ray 不是 Array](https://israynotarray.com/javascript/20211128/2950137358/)
+- [五倍紅寶石](https://5xruby.tw/posts/promise)
