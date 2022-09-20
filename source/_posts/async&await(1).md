@@ -12,7 +12,9 @@ categories:
 這個主題有滿多東西想寫的，所以就分成幾篇比較好閱讀
 
 ## Async 是什麼?
+`async/await`語法也是用來處理非同步程式，它背後的操作原理與 Promise 是一樣的，所以也被稱為 Promise 的語法糖，它可以把Promise寫得更直覺和簡潔(但其實也是見人見智)。
 
+async函式一定會回傳一個Promise物件，即使例子中的func不是一個Promise物件，它也會被包裝成Promise物件。
 ## 為什麼需要 Async
 開始之前，先複習一下 Promise 寫法
 
@@ -41,7 +43,7 @@ promiseFn(true)
 
 換成 Async 與 Await
 
-首先 Async 是必須寫在宣告函式之前，順便複習一下各種寫法
+首先 Async 是必須寫在宣告函式之前，順便複習一下各種函式寫法
 
 ```javascript
 async function fn() {
