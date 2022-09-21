@@ -52,9 +52,9 @@ asyncFnAll();
 async function asyncFn() {
   const res1 = await promiseCook('來一客' , 3);
   console.log(res1);
-  const res2 = await promiseCook('來兩客' , 5);
+  const res2 = await promiseCook('來兩客' , 2);
   console.log(res2);
-  const res3 = await promiseCook('來三客' , 2);
+  const res3 = await promiseCook('來三客' , 5);
   console.log(res3);
   }
 // catch 部分拉出來寫
@@ -66,6 +66,39 @@ const catchError = (asFn) => {
   
 catchError(asyncFn())
 ```
+
+這邊討論一下，
+如果把參數丟到最外層輸入的話這樣改寫
+
+```javascript
+async function asyncFn(foodName , time) {
+  const res = await promiseCook(foodName , time);
+  console.log(res);
+  }
+// catch 部分拉出來寫
+const catchError = (asFn) => {
+  return asFn.catch((err) => {
+    console.log(err);
+  })
+}
+
+catchError(asyncFn('來一客' , 3))
+catchError(asyncFn('來兩客' , 2))
+catchError(asyncFn('來三客' , 5))
+```
+
+![會變成速度快的先跑完](https://i.imgur.com/pkPXHx9.png)
+
+這樣寫的話
+```javascript
+[{name:'來一客' , min:3}, {name:'來兩客' , min:2}, {name:'來三客' , min:5}]
+.forEach(catchError(async (foodName , time) => {
+  const res = await promiseCook(foodName , time);
+  console.log(res);
+}))
+```
+
+![當前的async function還未被調用](https://i.imgur.com/FCvTTF8.png)
 
 
 
