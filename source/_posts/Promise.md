@@ -2,9 +2,9 @@
 title: 關於 Promise 這件事
 data: 2022-09-15
 tags:
-- javascript
+- JavaScript
 categories:
-- javascript
+- JavaScript
 - 非同步
 ---
 

@@ -2,9 +2,9 @@
 title: Promise的語法糖：async/await (1)
 date: 2022-09-19 11:24:12
 tags:
-- javascript
+- JavaScript
 categories:
-- javascript
+- JavaScript
 - 非同步
 ---
 
